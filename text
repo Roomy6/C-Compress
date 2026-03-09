@@ -1,1 +1,19 @@
 This is a simple small text file to compress I guess.
+This is a test for the compression. I need to make this a larger file
+with more text inside becuase... I need to. So, anywyas ima just type
+anything that comes to mind first. I might explain how im planning on
+compressing this file, well I was thinking of using a referencing
+function to loop though the file and check if any bytes have already been
+"referenced" in the file. Then just replace any other instance of that
+reference before it, to a "pointer" or "link" so hopefully reduce filesize.
+
+Heres a text example:
+"This is a example sample text with some text."
+
+This would be converted to something like:
+"This <3-4> a example s<13-17> text with some <26-29>"
+
+Obviously the "compressed" file is much larger than the original, but with
+a larger lookup size it will reduce it. And text in general is VERY hard
+to compress, if it were a binary file it would work extreamley well.
+In theorey anywys.
