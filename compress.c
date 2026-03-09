@@ -16,7 +16,9 @@ long int getSize(FILE *fp)
     if(fp == NULL) { return 1; }
 
     long int si = ftell(fp);
-    
+   
+    /* Rewind is very important for other functions */
+    rewind(fp);
     return si;
 }
 
@@ -26,7 +28,7 @@ int main(int argc, char* argv[])
 	else
 	{
 		/* Load first file */
-		fptr1 = fopen(argv[1], "r");
+		fptr1 = fopen(argv[1], "rb");
 		if(fptr1 == NULL) { printf("Cannon open file.\n"); return 1; }
 
 		/* Load second file */
@@ -35,12 +37,21 @@ int main(int argc, char* argv[])
         
         long int file_size = getSize(fptr1);
         printf("File size: %ld bytes.\n", file_size);
+        
+        char buffer[file_size];
+        int byte;
+        int count = 0;
 
 		/* Loop though file data */
-//        while (fgets(buffer, sizeof(buffer), fptr1))
-//        {
-//            printf("%s", buffer);
-//        }
+        while ((byte = fgetc(fptr1)) != EOF)
+        {
+            printf("%02X ", byte);
+            count++;
+
+            if(count % 16 == 0) { printf("\n"); }
+
+            printf("%s", buffer);
+        }
 
 		/* Close files and exit */
 		fclose(fptr1);
