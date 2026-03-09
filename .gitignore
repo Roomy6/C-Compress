@@ -1,5 +1,10 @@
+# Project based
+
 # Prerequisites
 *.d
+
+# ccls
+.ccls*
 
 # Object files
 *.o
